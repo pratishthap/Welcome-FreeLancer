@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/DatingApp.API/bin/Debug/netcoreapp2.2/DatingApp.API.dll",
+            "program": "${workspaceFolder}/DatingApp.API/bin/Debug/netcoreapp3.0/DatingApp.API.dll",
             "args": [],
             "cwd": "${workspaceFolder}/DatingApp.API",
             "stopAtEntry": false,
