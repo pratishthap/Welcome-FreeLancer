@@ -14,7 +14,7 @@ import { AuthService } from './_services/auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
-import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule, ModalModule } from 'ngx-bootstrap';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -28,6 +28,15 @@ import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { AlertifyService } from './_services/alertify.service';
 import { AuthGuard } from './_guards/auth.guard';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { ListsResolver } from './_resolvers/lists.resolver';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { HasRoleDirective } from './_directives/hasRole.directive';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { AdminService } from './_services/admin.service';
+import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
+import { JobPostComponent } from './job-post/job-post.component';
+import { SearchJobComponent } from './search-job/search-job.component';
+import { SearchEmployerComponent } from './search-employer/search-employer.component';
 
 
 export function tokenGetter() {
@@ -48,12 +57,22 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       HomeComponent,
       RegisterComponent,
       MemberListComponent,
+      JobPostComponent,
+      SearchJobComponent,
+      SearchEmployerComponent,
       ListsComponent,
       MessagesComponent,
       MemberCardComponent,
       MemberDetailComponent,
       MemberEditComponent,
-      TimeAgoPipe
+      TimeAgoPipe,
+      AdminPanelComponent,
+      HasRoleDirective,
+      UserManagementComponent,
+      RolesModalComponent
+   ],
+   entryComponents: [
+      RolesModalComponent
    ],
    imports: [
       BrowserModule,
@@ -68,6 +87,7 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       PaginationModule.forRoot(),
       ButtonsModule.forRoot(),
       NgxGalleryModule,
+      ModalModule.forRoot(),
       JwtModule.forRoot({
          config: {
             // tslint:disable-next-line: object-literal-shorthand
@@ -84,7 +104,9 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       AuthGuard,
       PreventUnsavedChanges,
       MemberDetailResolver,
+      ListsResolver,
       MemberListResolver,
+      AdminService,
       MemberEditResolver,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
    ],

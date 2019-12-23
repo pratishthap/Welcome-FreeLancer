@@ -38,5 +38,16 @@ loggedIn() {
 register(user: User) {
   return this.http.post(this.baseUrl + 'register' , user);
 }
+roleMatch(allowedRoles): boolean {
+  let isMatch = false;
+  const userRoles = this.decodedToken.role as Array<string>;
+  allowedRoles.forEach(element => {
+    if (userRoles.includes(element)) {
+      isMatch = true;
+      return;
+    }
+  });
+  return isMatch;
+}
 
 }
